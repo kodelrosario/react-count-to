@@ -10,7 +10,7 @@ const CountTo = React.createClass({
     onComplete: React.PropTypes.func,
     digits: React.PropTypes.number,
     className: React.PropTypes.string,
-    min: React.PropTypes.number
+    min: React.PropTypes.number,
   },
 
   getDefaultProps() {

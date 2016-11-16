@@ -44,9 +44,9 @@ var CountTo = _react2.default.createClass({
     this.start();
   },
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    var _props = this.props;
-    var from = _props.from;
-    var to = _props.to;
+    var _props = this.props,
+        from = _props.from,
+        to = _props.to;
 
 
     if (nextProps.to !== to || nextProps.from !== from) {
@@ -61,10 +61,10 @@ var CountTo = _react2.default.createClass({
 
     this.clear();
     this.setState(this.getInitialState(), function () {
-      var _props2 = _this.props;
-      var delay = _props2.delay;
-      var speed = _props2.speed;
-      var to = _props2.to;
+      var _props2 = _this.props,
+          delay = _props2.delay,
+          speed = _props2.speed,
+          to = _props2.to;
       var counter = _this.state.counter;
 
       _this.loopsCounter = 0;
@@ -77,14 +77,17 @@ var CountTo = _react2.default.createClass({
     var _this2 = this;
 
     if (this.loopsCounter < this.loops) {
-      this.loopsCounter++;
-      var min = this.props.min;
-      this.setState(function (_ref) {
-        var counter = _ref.counter;
-        return {
-          counter: min == null ? counter + _this2.increment : Math.max(counter + _this2.increment, min),
-        };
-      });
+      (function () {
+        _this2.loopsCounter++;
+        var min = _this2.props.min;
+
+        _this2.setState(function (_ref) {
+          var counter = _ref.counter;
+          return {
+            counter: min == null ? counter + _this2.increment : Math.max(counter + _this2.increment, min)
+          };
+        });
+      })();
     } else {
       var onComplete = this.props.onComplete;
 
@@ -99,9 +102,9 @@ var CountTo = _react2.default.createClass({
     clearInterval(this.interval);
   },
   render: function render() {
-    var _props3 = this.props;
-    var className = _props3.className;
-    var digits = _props3.digits;
+    var _props3 = this.props,
+        className = _props3.className,
+        digits = _props3.digits;
     var counter = this.state.counter;
 
     var value = counter.toFixed(digits);
