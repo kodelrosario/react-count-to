@@ -10,6 +10,7 @@ const CountTo = React.createClass({
     onComplete: React.PropTypes.func,
     digits: React.PropTypes.number,
     className: React.PropTypes.string,
+    min: React.PropTypes.number
   },
 
   getDefaultProps() {
@@ -59,8 +60,9 @@ const CountTo = React.createClass({
   next() {
     if (this.loopsCounter < this.loops) {
       this.loopsCounter++;
+      const { min } = this.props;
       this.setState(({ counter }) => ({
-        counter: counter + this.increment,
+        counter: min == null ? counter + this.increment : Math.max(counter + this.increment, min),
       }));
     } else {
       const { onComplete } = this.props;

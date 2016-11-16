@@ -21,7 +21,8 @@ var CountTo = _react2.default.createClass({
     delay: _react2.default.PropTypes.number,
     onComplete: _react2.default.PropTypes.func,
     digits: _react2.default.PropTypes.number,
-    className: _react2.default.PropTypes.string
+    className: _react2.default.PropTypes.string,
+    min: _react2.default.PropTypes.number
   },
 
   getDefaultProps: function getDefaultProps() {
@@ -77,10 +78,11 @@ var CountTo = _react2.default.createClass({
 
     if (this.loopsCounter < this.loops) {
       this.loopsCounter++;
+      var min = this.props.min;
       this.setState(function (_ref) {
         var counter = _ref.counter;
         return {
-          counter: counter + _this2.increment
+          counter: min == null ? counter + _this2.increment : Math.max(counter + _this2.increment, min),
         };
       });
     } else {
